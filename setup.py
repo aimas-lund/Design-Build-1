@@ -2,22 +2,27 @@ import machine
 
 def setup():
     #setup light to voltage sensor
-    apin = 39  # define analog pin nr.
-    sensor = machine.Pin(apin)  # define the pin
-    adc = machine.ADC(sensor)  # define the pin as an analog-to-digital converter
+    apin = 34  # define analog pin nr (pin A2)
+    adc = machine.ADC(machine.Pin(apin))  # define the pin as an analog-to-digital converter
     adc.atten(machine.ADC.ATTN_11DB)  # set the atten..?
     adc.width(machine.ADC.WIDTH_12BIT)  # set the width of the available bits
 
     #setup LED
-    ledPinNr = 9999  # insert pin number
-    LED = machine.Pin(ledPinNr, machine.Pin.OUT)  # define LED as an output pin
+    apin2 = 25 #define the LED as analog output (pin A1)
+    dac = machine.DAC(machine.Pin(apin2)) #define as
+    adc.atten(machine.ADC.ATTN_11DB)  # set the atten..?
+    adc.width(machine.ADC.WIDTH_12BIT) # set the width of the available bits
 
     #setup embedded LED
-    ledPinNr2 = 13 #this pin nr. is fixed
-    LED2 = machine.Pin(ledPinNr2, machine.Pin.OUT)
+    ledPinNo = 13 #this pin nr. is fixed (pin 13)
+    LED = machine.Pin(ledPinNo2, machine.Pin.OUT)
 
-    #setup button
-    ledPinNr3 = 27 #insert pin number for button
-    button = machine.Pin(ledPinNr3, machine.Pin.IN)
+    #setup button 1
+    buttomPinNo = 27 #insert pin number for button (pin 27)
+    button = machine.Pin(buttomPinNo, machine.Pin.IN)
 
-    return(adc,LED,LED2,button)
+    # setup button 2
+    buttomPinNo2 = 12  # insert pin number for button (pin 12)
+    button2 = machine.Pin(buttomPinNo2, machine.Pin.IN)
+
+    return(adc,dac,LED,button,button2)

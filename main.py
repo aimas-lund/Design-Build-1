@@ -17,7 +17,20 @@ while True: #calibrate the light-to-voltage sensor
     else:
         pass
 
+count = 0
 while True: #now do some measurements...
+    if components[3].value() == 1 #chech whether the exit button is pressed
+        break #stop
+    else:
+        if count % 180 == 0 #check whether 180 seconds has passed
+            data = measureSensor()
+            dataval = data[0] #measured light
+            devi = data[1] #standard deviation of measurement
+        else:
+            pass
+
+    time.sleep(1)
+    count += 1
 
 
         

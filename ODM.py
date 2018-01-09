@@ -3,8 +3,8 @@ from setup import *
 import math
 import time
 
-b = setup()[3]
-b2 = setup()[4]
+b = setup()[2]
+b2 = setup()[3]
 LED = setup()[1]
 adc = setup()[0]
 
@@ -47,5 +47,3 @@ while abort == False:
             break
         else:
             pass
-
-

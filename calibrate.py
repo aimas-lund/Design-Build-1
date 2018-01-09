@@ -1,8 +1,8 @@
 from setup import *
 def calibrate(): #activate when a button is pushed and held for x seconds
-    comps = setup() #get pinvalues
-    adc = comps[0]
-    LED = comps[1]
+    comp = setup() #get pinvalues
+    adc = comp[0]
+    LED = comp[1]
     current = 450 #overestimate current
 
     while True: #repetedly decrease the current and measure, until a value is reached of which we know we can measure
@@ -17,7 +17,6 @@ def calibrate(): #activate when a button is pushed and held for x seconds
             break
         else:
             pass
-
         current -= 1 #gradually reduce current through LED
 
     LED.duty(0)

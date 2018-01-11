@@ -20,8 +20,8 @@ cBool = False
 while True:  # wait for THE BUTTON to be pressed
     if b1.value() == 0:
         if cBool == False:
-            init = 2662.72 #if no calibration, set to preset calibration
-            current = 421
+            init = 2597.82 #if no calibration, set to preset calibration
+            current = 330
         else:
             pass
         break
@@ -40,14 +40,16 @@ green.value(0)
 red.value(1)
 time.sleep(2)
 cycle = 0 #a cycle is ~1 second
-
+file.write("Time,ADC Value,Std Deviation,Calibrated OD\n")
 while (b1.value() == 1) and (cycle <= 43200): #continue until the button is pushed or when 12 hours worth of data is reached
     blue.value(1)
     if cycle % 30 == 0:
         green.value(1)
         blue.value(0) #flash blue when measurements are made
-        data = measure(current)
-        file.write("{},{},{}\n".format(cycle,data[0],data[1]))
+        data = measure(current, init)
+        OD = -1*(math.log10(data[0]/init)) #calculate OD
+        ODcali = 4.9905*OD + 0.0396 #change OD to calibrated value
+        file.write("{},{},{},{}\n".format(cycle,data[0],data[1],ODcali))
     elif cycle % 2 == 0: #blink green every other second
         if green.value() == 0:
             green.value(1)

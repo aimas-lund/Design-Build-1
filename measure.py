@@ -1,6 +1,7 @@
 from setup import *
+import math
 
-def measure(current):
+def measure(current, init):
     adc = setup()[0]
     pwm = setup()[1]
     measurements = []
@@ -11,6 +12,7 @@ def measure(current):
     data = sum(measurements) / len(measurements)  # take the average value
     measurements[:] = [(x - data) ** 2 for x in measurements] #calculate standard deviation from a list comprehention
     std = ((sum(measurements)) / (len(measurements) - 1)) ** 0.5
-
+    OD = -1*(math.log10(data/init)) #calculate OD
+    stdOD = -1*(math.log10(std/init)) #calculate deviation in OD
     pwm.deinit()
     return(data,std)

@@ -19,8 +19,8 @@ while True:  # wait for THE BUTTON to be pressed
 #c = calibrate()
 #LED.duty(c[1]) #set current to calibrated value
 #initVal = c[0]
-initVal = 2662.72
-LED.duty(421)
+initVal = 2600
+LED.duty(330)
 file = open("OD.csv","w")
 abort = False
 
@@ -36,8 +36,8 @@ while abort == False:
                 measurements.append(reading)
             val = sum(measurements) / len(measurements)  # take the average value
             OD = -1*(math.log10(val/initVal)) #calculate OD
-            print("OD: {}".format(OD))
-            file.write("{}\n".format(OD))
+            print("OD: {}\nADC value: {}".format(OD,val))
+            file.write("{},{}\n".format(OD,val))
             break
 
         elif b.value() == 0: #if button 1 is pressed, finish the session

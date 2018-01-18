@@ -19,10 +19,13 @@ def setup():
     green = Pin(32, Pin.OUT)
     blue = Pin(14, Pin.OUT)
 
+    #setup embedded LED
+    emb = Pin(13, Pin.OUT)
+
     #setup button 1
     button = Pin(33, Pin.IN, Pin.PULL_UP)
 
     # setup button 2
     button2 = Pin(27, Pin.IN, Pin.PULL_UP)
 
-    return(adc,pwm,button,button2,red,green,blue)
+    return(adc,pwm,button,button2,red,green,blue,emb)

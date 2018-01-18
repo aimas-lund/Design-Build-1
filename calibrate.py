@@ -6,6 +6,12 @@ adc = comp[0]
 LED = comp[1]
 current = 1 #overestimate current
 init = 2660
+red = setup()[4]
+green = setup()[5]
+blue = setup()[6]
+red.value(1)
+green.value(1)
+blue.value(1)
 
 while True: #repetedly decrease the current and measure, until a value is reached of which we know we can measure
     LED.duty(current)

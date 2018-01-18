@@ -12,7 +12,5 @@ def measure(current, init):
     data = sum(measurements) / len(measurements)  # take the average value
     measurements[:] = [(x - data) ** 2 for x in measurements] #calculate standard deviation from a list comprehention
     std = ((sum(measurements)) / (len(measurements) - 1)) ** 0.5
-    OD = -1*(math.log10(data/init)) #calculate OD
-    stdOD = -1*(math.log10(std/init)) #calculate deviation in OD
     pwm.deinit()
     return(data,std)
